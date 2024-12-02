@@ -34,16 +34,15 @@ func (v *Car) Rent() error {
 		return errors.New("Aвтомобиль уже арендован\n")
 	}
 	v.rented = true
-	fmt.Printf("Аренда автомобиля: %s\n", v.brand)
 	return nil
 }
 
 func (v *Car) Return() error {
+	v.rented = false
 	if !v.rented {
 		return errors.New("Автомобиль не арендован\n")
 	}
-	v.rented = false
-	fmt.Printf("Возврат автомобиля: %s\n", v.brand)
+	
 	return nil
 }
 
@@ -56,8 +55,8 @@ func (v *Bike) Rent() error {
 	if v.rented {
 		return errors.New("Велосипед уже арендован\n")
 	}
+	
 	v.rented = true
-	fmt.Printf("Аренда велосипеда: %s\n", v.brand)
 	return nil
 }
 
@@ -80,7 +79,6 @@ func (v *Skate) Rent() error {
 		return errors.New("Скейты уже арендованы\n")
 	}
 	v.rented = true
-	fmt.Printf("Аренда Скейтов: %s\n", v.brand)
 	return nil
 }
 
@@ -88,24 +86,24 @@ func (v *Skate) Return() error {
 	if !v.rented {
 		return errors.New("Скейты не арендованы\n")
 	}
-	v.rented = false
+	v.rented = false 
 	fmt.Printf("Возврат Скейта: %s\n", v.brand)
 	return nil
 }
 
 func (v *Skate) Details() error {
-	fmt.Printf("Детали Скейтов: %s, ID: %d, арендован: %v\n", v.brand, v.Id, v.rented)
+	fmt.Printf("Детали Скейтов: %s, ID: %d, арендование: %v\n", v.brand, v.Id, v.rented)
 	return nil
 }
 
 func main() {
-	
-	var vehicles []Vehicle 
+
+	var vehicles []Vehicle
 	var command int
 
 	for {
 		fmt.Println("\nВведите команду!: ")
-		fmt.Println("1. Посмотреть доступные транспортные средства!")
+		fmt.Println("1. Посмотреть транспортные средства!")
 		fmt.Println("2. Арендовать транспортное средство!")
 		fmt.Println("3. Вернуть транспортное средство!")
 		fmt.Println("4. Добавить новое транспортное средство!")
