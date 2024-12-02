@@ -47,10 +47,13 @@ func (v *Car) Return() error {
 }
 
 func (v *Car) Details() error {
-	fmt.Printf("Детали автомобиля: %s, ID: %d, арендован: %v\n", v.brand, v.Id, v.rented)
+	if v.rented {
+		fmt.Printf("Автомобиль с ID %d арендован.\n", v.Id)
+	} else {
+		fmt.Printf("Детали автомобиля: %s, ID: %d, арендован: %v\n", v.brand, v.Id, v.rented)
+	}
 	return nil
 }
-
 func (v *Bike) Rent() error {
 	if v.rented {
 		return errors.New("Велосипед уже арендован\n")
@@ -70,7 +73,11 @@ func (v *Bike) Return() error {
 }
 
 func (v *Bike) Details() error {
-	fmt.Printf("Детали велосипеда: %s, ID: %d, арендован: %v\n", v.brand, v.Id, v.rented)
+	if v.rented {
+		fmt.Printf("Велосипед с ID %d арендован.\n", v.Id)
+	} else {
+		fmt.Printf("Детали велосипеда: %s, ID: %d, арендован: %v\n", v.brand, v.Id, v.rented)
+	}
 	return nil
 }
 
@@ -91,8 +98,13 @@ func (v *Skate) Return() error {
 	return nil
 }
 
+
 func (v *Skate) Details() error {
-	fmt.Printf("Детали Скейтов: %s, ID: %d, арендование: %v\n", v.brand, v.Id, v.rented)
+	if v.rented {
+		fmt.Printf("Скейты с ID %d арендованы.\n", v.Id)
+	} else {
+		fmt.Printf("Детали Скейтов: %s, ID: %d, арендован: %v\n", v.brand, v.Id, v.rented)
+	}
 	return nil
 }
 
@@ -103,7 +115,7 @@ func main() {
 
 	for {
 		fmt.Println("\nВведите команду!: ")
-		fmt.Println("1. Посмотреть транспортные средства!")
+		fmt.Println("1. Посмотреть доступные транспортные средства!")
 		fmt.Println("2. Арендовать транспортное средство!")
 		fmt.Println("3. Вернуть транспортное средство!")
 		fmt.Println("4. Добавить новое транспортное средство!")
